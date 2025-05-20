@@ -79,3 +79,8 @@ rename col name in the result   : SELECT empno AS Employee_Number from emp;
 FUNCTIONS                       : MAX, MIN, IN, NOT IN, TODATE, IS NULL, IS NOT NULL
 dates                           : YYYY-DD-MM
                                 
+                                : A% start with A
+                                  __A% first 2 chat can be anything, 3rd A, and then anything
+                                  %S ends with S
+                                  %ES% anything ES anything
+                                  
