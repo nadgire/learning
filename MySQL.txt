@@ -1,0 +1,81 @@
+MySQL
+SQL/MySQL is non procedural language
+
+DDL Data Definition 			: CREATE, ALTER, RENAME, TRUNCATE, DROP
+DQL Data Query				    : SELECT
+DML Data manipulation			: INSERT, UPDATE, DELETE
+DCL Data Control			    : GRANT, REVOKE permission to users
+TCL Transaction Control			: start transaction, commit, rollback 
+
+create DB				        : create database database_name;
+list all databses               : show databses;
+delete database				    : drop database database_name;
+select DB				        : use db_name;
+
+show tables				        : SHOW TABLES;
+
+create table				    : CREATE TABLE table_name (col_name1 datatype constraint, col_name2 datatype constraint, col_name3 datatype constraint); 
+					            : CREATE TABLE students(id INT Primary KEY, name varchar(50), age INT NOT NULL);
+
+structure                       : desc tablename;
+                                  desc students;                                
+
+insert into table			    : INSERT INTO students VALUES(1, "ABHISHEK", 24);
+			            		: INSERT INTO students VALUES(2, "SUMEDHA", 20);
+					
+					            : INSERT INTO students (col_name1, col_name2, col_name3) VALUES (1, "ABHISHEK", 24), (2, "SUMEDHA", 20);
+					
+select data		        		: SELECT * from students;
+					            : SELECT col1, col2 from tablename;
+
+                                  [Optional] <mandatory>
+
+                                  SELECT <col_list> 
+                                    FROM <table_name>
+                                    [WHERE <condition>]
+                                    [GROUP BY <col-name(s)>]
+                                    [HAVING <condition>]
+                                    [ORDER BY <expression>];
+
+                                  SELECT distinct job from emp;
+                                  SELECT distinct job, deptno from emp;  -> combination of columns will be unique. 
+
+                                  SELECT job, distinct deptno from emo;  -> error. distinct keyword can be at the start
+
+primary key				        : PRIMARY KEY, PRIMARY KEY(id, name)
+foreign key				        : CREATE TABLE customer (dept_id INT, FOREIGN KEY (dept_id) REFERENCES department(deptartment_id));
+
+                                  foreign key can be the part of same table.
+
+constraints     				: CREATE TABLE students(
+                                  id INT PRIMARY KEY,
+                                  name VARCHAR(50),
+                                  city VARCHAR(50),
+                                  age INT,
+                                  CONSTRAINT age_check CHECK (age>=18 AND city='delhi')
+                                   );
+					  
+DISTINCT - no repeat			: SELECT DISTINCT city from student  => only unique cities will be listed. 
+
+WHERE - condition		    	: SELECT * from student WHERE marks>80;
+				            	  SELECT * from student WHERE marks>80 AND city="Mumbai";
+					              SELECT * from student WHERE marks BETWEEN 80 AND 90;	--> 80,90 inclusive
+            					  SELECT * from student WHERE city IN ("delhi", "mumbai");
+			            		  SELECT * from student WHERE city NOT IN ("delhi", "mumbai");
+					  
+Operators				        : Arithmetic ==> +, -, *, /, %
+            					  Relational ==> =, !=, >, <, >=, <=
+			            		  logical ==> AND OR NOT IN BETWEEN ALL LIKE ANY
+            					  bitwise ==> &, |
+
+ORDER BY                        : by default it is ascending
+                                  SELECT distinct job, deptno from emp ORDER BY deptno; 
+                                  SELECT distinct job, deptno from emp ORDER BY deptno, job; if firsst is satiesfied or failed, 2nd will be considered. 
+
+UPPER                           : SELECT * from emp WHERE UPPER(job) = UPPER('MANAGER');
+
+rename col name in the result   : SELECT empno AS Employee_Number from emp;
+
+FUNCTIONS                       : MAX, MIN, IN, NOT IN, TODATE, IS NULL, IS NOT NULL
+dates                           : YYYY-DD-MM
+                                

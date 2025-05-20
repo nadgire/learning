@@ -1,0 +1,98 @@
+Limitations of Relational Databases:
+    1. In relational DB we need to define structure and schema of data first and then only e can process the data.
+    2. RDB systems provides consistency and integrity of data by enforcing ACID properties (Atomicity, Consistency, Isolation, Durability)
+
+Types of NoSQL DB: 
+    Key value store : Memcached, Redis, Coherence
+    Tabular : HBase, Big Tablee, Accumulo
+    Document Based : MongoDB, CouchDB, Cloudant
+
+Definition : It stores the data in flexible JSON-like documents, meaning fields can vary from document to document and data structure can be changed over time.
+
+Datatypes: 
+String, Integer, Boolean, Double, Arrays, Timestamp, Object, Null, Date, Regular Expression.
+
+RDBMS       MongoDB
+Databases   Databases
+Tables      Collections
+Rows        Document
+Column      field
+
+ObjectID : field = _id, these are small, unique, and ordered. 4 bytes = Current Timestamp   
+                                                              3 bytes = machine _id
+                                                              2 bytes = process _id 
+                                                              3 bytes = simple increament counter
+                                                            
+Features of MongoDB : 
+    1) High Performance
+    2) Provides auto replication to quickly recover the data
+    3) Sharding is partitioning of the data and placing on multiple machines in such a way that the order of the data is preserved.
+         Vertical scaling means adding more resources to existing machine. Horizontal scaling means adding more machines to handle the data.
+         Horizontal scaling DB eg. MongoDB, Cassandra etc.
+    4) Load balancing
+    5) High availability
+    6) Indexing : indexes are used to quickly locate the data without having to search every document in a MongoDB Database.
+
+Switch On the server
+mongod
+mongosh
+
+create the DB : show databases
+                use DBName
+create collection          : db.createCollection("CollectionName"); // create Table
+
+Inser record to collection : db.collectionName.insertOne({});
+                             db.collectionName.insertMany({},{},{},{});
+
+show records               : db.colletionName.find(); // display all records
+                             db.colletionName.find({},{_id:0, marks:0}); // It will hide _id and Marks filed while displaying the data.
+
+Update records             : db.collectionName.updateOne({"rollno":1}, {$set:{"fullname":"Akshay Nadgire", "marks": 300}}); // update first mathc
+                             db.collectionName.updateMany(); // update all matches
+                
+delete records             : db.collectionName.deleteOne({"rollno":2});
+                             db.collectionName.deleteMany({"rollno":2});
+
+Search records             : db.collectionName.find({"rollno":1},{_id:0}); // first object= what to find ----- second object= what to hide while displaying
+
+Conditional statements     : db.student.find({"marks":{$gt:100}}).pretty();
+                             $gt = greater than
+                             $eq = equals to
+                             $gte = greater than equals to
+                             $lt = less than
+                             $lte = less than equals to
+                             $in = includes        // db.student.find({"marks":{$in:[300]}}).pretty(); needs an array
+                             $nin = not includes
+                             $ne = not equals to
+
+                             $and = db.student.find({$and:[{"fullname":"Sumedha Nadgire","rollno":2}]});
+                             $or = db.student.find({$or:[{"fullname":"Sumedha Nadgire","rollno":2}]});
+
+                             Sorting = db.student.find().sort({"rollno":-1});   // -1 = descending, 1 = ascending
+                             .skip(3)
+                             .limit(3);
+
+                             .countDocuments();
+
+Aggrigation Commands       : To work on multiple collections (Tables) it works as Join in RDBMS
+                             
+                             order collection
+                             {"_id":1, "item": "almonds", "price": 12, "quantity": 2},
+                             {"_id":2, "item": "pecans", "price": 20, "quantity": 1}
+
+                             Product collection
+                             {"_id":1, "sku": "almonds", "description": "product 1", "instock": 100},
+                             {"_id":1, "sku": "cashew", "description": "product 2", "instock": 200},
+                             {"_id":1, "sku": "hazelnuts", "description": "product 3", "instock": 300},
+                             {"_id":1, "sku": "pecans", "description": "product 4", "instock": 400}
+
+                             db.orders.aggregate([
+                                {
+                                    $lookup:{
+                                        from: "product",
+                                        localField: "item",
+                                        forrignField: "sku";
+                                        as : "inventory_docs"
+                                    }
+                                }
+                             ])

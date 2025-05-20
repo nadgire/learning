@@ -1,0 +1,77 @@
+Primitive Datatypes
+    string
+    number
+    boolean
+    undefined
+    null
+    regExp
+    everything else is Object
+
+Process Object
+    Each node.js script runs in a process. It includes process object to get all the information about the current process of node.js application
+    Eg.
+        > process.execPath
+          'C:\\Program Files\\nodejs\\node.exe'
+        > process.pid
+          12972
+
+Local / Global scope
+    - Everything is local by default
+    - To add something in global space, need to export using export or module.exports. The same way, import modules/object using require() function to 
+    access it from global scope
+
+
+File Handling : Node provides FS module to work with the files.
+  fs.open method = path/to/file, r, callback function
+  Modes of the file:
+    1) r = opens the file for reading. Stream at the beginning of the file
+    2) r+ = opens the file for reading and writing. Stream at the beginning of the file.
+    3) w = truncate the file to 0 length or create a file for writing. Stream at the beginning of the file (writes new file)
+    4) w+ = opens the file for reading and writing. File is created if not exists. Otherwise truncated Stream at beginning
+    5) a = open file for writing. file is created if not exist. stream at the end.
+    6) a+ = open file for reading and wiring. file is created of not exist. stream at the end.
+
+  Methods : fs.read
+            fs.readFile
+            fs.readFileSync
+            fs.readSync
+            fs.write
+            fs.writeFile
+            fs.writeFileSync
+            fs.writeSync
+            fs.append
+            fs.appendFile
+            fs.appendFileSync
+            fs.appendSync
+            fs.unlink ==> delete the file
+            fs.unlinkSync
+
+Streams : 
+  The stream interface allows you to control the flow to mitigate the slow problem(reading large files). You can automate this process using stream.pipe() method.
+  Streams can send the data in chunks.
+  Methods :
+    fs.createReadStream(path/to/file)
+    fs.createWriteStream(path/to/file, options(encoding));
+
+Events : Strings are the instances of EventEmmiter class. They Emit the events while reading and writing the data. 
+  Eg. Data Event, Stream passes a chunk of data to the consumer.
+      End Event, when there is no more data t be consumed from the stream.
+      Drain Event, writable stream can receive more data.
+      Finish Event, when all the data has been flushed to the underlined system.
+
+  - Node.js allows us to create and handle the custom events easily by using events module. Event module includes EvenEmmiter class which can be used to raise and
+    handle custom events.
+
+    emitter.addListener(event,[listener])
+    emitter.on(event,[listener])
+    emitter.once(event,listener)
+    emitter.removeListener(event,listener)
+    emitter.removeAllListeners([events])
+    EventEmtter Methods => emitter.setMaxListeners(n)
+    
+
+MVC architecture: )Model View Controller(
+
+  npm install --save coockie-parser
+
+  

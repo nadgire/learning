@@ -1,0 +1,8 @@
+netlify init
+netlify dev
+netlify build
+netlify deploy
+netlify deploy --prod
+
+
+
