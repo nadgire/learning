@@ -76,7 +76,8 @@ UPPER                           : SELECT * from emp WHERE UPPER(job) = UPPER('MA
 
 rename col name in the result   : SELECT empno AS Employee_Number from emp;
 
-FUNCTIONS                       : MAX, MIN, IN, NOT IN, TODATE, IS NULL, IS NOT NULL
+FUNCTIONS                       : COUNT, SUM, AVG, STDDEV, VARIENCE, MAX, MIN, IN, NOT IN, TODATE, ABS, CEIL, FLOOR, MOD, POWER, EXP, GREATEST, IS NULL, IS NOT NULL, SIGN, SQRT, TRUNC, ROUND
+
 dates                           : YYYY-DD-MM
                                 
                                 : A% start with A
@@ -84,3 +85,7 @@ dates                           : YYYY-DD-MM
                                   %S ends with S
                                   %ES% anything ES anything
                                   
+GROUP BY                        : GROUP BYT will form the groups first but is written at the end of the query.
+HAVING is used to filterout the groups acts as WHERE
+
+
