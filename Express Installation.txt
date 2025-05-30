@@ -1,0 +1,21 @@
+Project folder
+  create empty 'public' folder
+  create app.js
+
+  npm init
+
+  npm install express
+
+  npm install --save-dev nodemon
+
+  npm install --save-dev dotenv
+
+  npm install body-parser
+
+  npm install mongoose --save
+
+  npm install cors
+
+  npm install multer --save 
+
+  
